@@ -20,6 +20,7 @@ type_paths = {
   'Eluna and the Moth':['mods/builtIn/villain_ecthis/assets/data/monsters/thrixl'],
   'All the Bones of Summer':['mods/builtIn/villain_cvawn/assets/data/monsters/drauven'],
   'The Sunswallower\'s Wake':['mods/builtIn/villain_vulture_lord/assets/data/monsters/misc'],
+  'A Walk in the Unlight':['mods/builtIn/villain_glyffrix/assets/data/monsters/cultist','mods/builtIn/villain_glyffrix/assets/data/monsters/drauven','mods/builtIn/villain_glyffrix/assets/data/monsters/gorgon','mods/builtIn/villain_glyffrix/assets/data/monsters/misc','mods/builtIn/villain_glyffrix/assets/data/monsters/morthagi','mods/builtIn/villain_glyffrix/assets/data/monsters/thrixl']
   }
   
 names = {}
@@ -70,7 +71,7 @@ for diff in list(diffs):
     string += '|-\n'
     string += '|\n\n'
     string += '{| class="wikitable sortable" style="text-align: center"\n'
-    string += '! ID !! Name !! [[Health]] !! [[Armor]] !! [[Warding]] !! [[Block]] + [[Dodge]] !! [[Speed]] !! [[Melee Accuracy]] !! [[Ranged Accuracy]]\n'
+    string += '! ID !! Name !! [[Stat#Health|Health]] !! [[Stat#Armor|Armor]] !! [[Warding]] !! [[Block]] + [[Dodge]] !! [[Speed]] !! [[Stat#Accuracy|Accuracy]]\n'
     for l in type_paths[faction]:
       for m in glob(l + '/*.json'):
         with open(m) as f:
@@ -84,11 +85,10 @@ for diff in list(diffs):
           block = read_stat(data,'BLOCK',d)
           dodge = read_stat(data,'DODGE',d)
           macc = read_stat(data,'MELEE_ACCURACY',d)
-          racc = read_stat(data,'RANGE_ACCURACY',d)
           
           avoid = str(int(block)+int(dodge))
           string += '|-\n'
-          string += '| <small>' + id + '</small> || [[' + name + ']] || ' + health + ' || ' + armor + ' || ' + warding + ' || ' + avoid + ' || ' + speed + ' || ' + macc + ' || ' + racc + '\n'
+          string += '| <small>' + id + '</small> || [[' + name + ']] || ' + health + ' || ' + armor + ' || ' + warding + ' || ' + avoid + ' || ' + speed + ' || ' + macc + '\n'
       
     string += '|}\n\n'
     string += '|}\n\n'
